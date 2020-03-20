@@ -61,7 +61,7 @@ defmodule Goth.Client do
     url_base = "#{metadata}/#{endpoint}/#{account}"
 
     url = "#{url_base}/token"
-    {:ok, token} = HTTPoison.get(url, headers)
+    {:ok, token} = HTTPoison.get(url, headers, [ssl: [{:versions, [:'tlsv1.2']}]])
     {:ok, Token.from_response_json({service_account, scope}, token.body)}
   end
 
@@ -80,7 +80,7 @@ defmodule Goth.Client do
 
     headers = [{"Content-Type", "application/x-www-form-urlencoded"}]
 
-    HTTPoison.post(url, body, headers)
+    HTTPoison.post(url, body, headers, [ssl: [{:versions, [:'tlsv1.2']}]])
     |> handle_response({account, scope}, sub)
   end
 
@@ -103,7 +103,7 @@ defmodule Goth.Client do
 
     headers = [{"Content-Type", "application/x-www-form-urlencoded"}]
 
-    HTTPoison.post(url, body, headers)
+    HTTPoison.post(url, body, headers, [ssl: [{:versions, [:'tlsv1.2']}]])
     |> handle_response({account, scope})
   end
 
@@ -160,7 +160,7 @@ defmodule Goth.Client do
     endpoint = "computeMetadata/v1/project/project-id"
     metadata = Application.get_env(:goth, :metadata_url, "http://metadata.google.internal")
     url = "#{metadata}/#{endpoint}"
-    HTTPoison.get!(url, headers).body
+    HTTPoison.get!(url, headers, [ssl: [{:versions, [:'tlsv1.2']}]]).body
   end
 
   defp destruct_opts(opts) do

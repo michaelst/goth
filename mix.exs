@@ -28,12 +28,12 @@ defmodule Goth.Mixfile do
       {:joken, "~> 2.0"},
       {:jason, "~> 1.1"},
       {:httpoison, "~> 0.11 or ~> 1.0"},
-      {:bypass, "~> 0.1", only: :test},
-      {:plug_cowboy, "~> 1.0", only: :test},
-      {:mix_test_watch, "~> 0.2", only: :dev},
+      {:bypass, "~> 1.0", only: :test},
+      {:plug_cowboy, "~> 2.0", only: :test},
+      {:mix_test_watch, "~> 1.0", only: :dev},
       {:ex_doc, "~> 0.19", only: :dev},
-      {:credo, "~> 0.8", only: [:test, :dev]},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
+      {:credo, "~> 1.0", only: [:test, :dev]},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end
 
